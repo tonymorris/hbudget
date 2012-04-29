@@ -9,10 +9,13 @@ module Math.Budget.Interval
 , onceOffInterval
 ) where
 
+import Math.Budget.Lens.EverySecondsL
+import Math.Budget.Lens.EveryMonthsL
 import Math.Budget.Lens.ArbitraryIntervalL
 import Math.Budget.Lens.FixedIntervalL
 import Math.Budget.FixedPeriod
 import Data.Lens.Partial.Common
+import Control.Category
 import Control.Comonad.Trans.Store
 
 data Interval =
@@ -33,6 +36,14 @@ instance ArbitraryIntervalL PartialLens Interval where
     PLens $ \p -> case p of
       Arbitrary n -> Just (store arbitraryInterval n)
       _ -> Nothing
+
+instance EverySecondsL PartialLens Interval where
+  everySecondsL =
+    fixedIntervalL >>> everySecondsL
+
+instance EveryMonthsL PartialLens Interval where
+  everyMonthsL =
+    fixedIntervalL >>> everyMonthsL
 
 isOnceOffInterval ::
   Interval
