@@ -10,6 +10,7 @@ module Math.Budget.Method(
 , arbitraryMethod
 , cashMethod
 , unknownMethod
+, module Network.URI
 ) where
 
 import Network.URI

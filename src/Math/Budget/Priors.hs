@@ -5,6 +5,7 @@ module Math.Budget.Priors
   Priors
 , arbitraryPriors
 , fixedPriors
+, module Data.List.NonEmpty
 ) where
 
 import Math.Budget.Money
