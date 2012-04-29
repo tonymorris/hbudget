@@ -17,6 +17,7 @@ import Control.Comonad.Trans.Store
 data Priors =
   Arbitrary (NonEmpty (Money, DiffTime))
   | Fixed (NonEmpty Money) FixedPeriod
+  deriving (Eq, Ord, Show)
 
 arbitraryPriorsL ::
   PartialLens Priors (NonEmpty (Money, DiffTime))

@@ -39,4 +39,5 @@ Library
                     Math.Budget.Money
                     Math.Budget.Interval
                     Math.Budget.Priors
+                    Math.Budget.Network
 
