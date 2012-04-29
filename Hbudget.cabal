@@ -21,7 +21,10 @@ Flag                small_base
 
 Library
   Build-Depends:
-                    base < 5 && >= 3
+                      base < 5 && >= 3
+                    , mtl >= 2
+                    , comonad-transformers >= 2
+                    , data-lens >= 4
 
   GHC-Options:
                     -Wall
@@ -30,5 +33,5 @@ Library
                     src
 
   Exposed-Modules:
-                    M
+                    Math.Budget.FixedPeriod
 
