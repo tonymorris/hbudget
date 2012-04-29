@@ -47,10 +47,8 @@ instance EveryMonthsL PartialLens Interval where
 isOnceOffInterval ::
   Interval
   -> Bool
-isOnceOffInterval OnceOff =
-  True
-isOnceOffInterval _ =
-  False
+isOnceOffInterval =
+  (== OnceOff)
 
 fixedInterval ::
   FixedPeriod

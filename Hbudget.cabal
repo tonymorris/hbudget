@@ -37,17 +37,22 @@ Library
 
   Exposed-Modules:
                     Math.Budget.Lens.ArbitraryIntervalL
+                    Math.Budget.Lens.ArbitraryMethodL
                     Math.Budget.Lens.ArbitraryPriorsL
+                    Math.Budget.Lens.BankDepositL
+                    Math.Budget.Lens.BPayL
                     Math.Budget.Lens.EveryMonthsL
                     Math.Budget.Lens.EverySecondsL
                     Math.Budget.Lens.FixedIntervalL
                     Math.Budget.Lens.FixedPriorsL
+                    Math.Budget.Lens.InternetMethodL
                     Math.Budget.FixedPeriod
                     Math.Budget.Interval
                     Math.Budget.Lens
                     Math.Budget.Method
                     Math.Budget.Money
                     Math.Budget.Priors
+                    Math.Budget.Types
                     Math.Budget
 
 
