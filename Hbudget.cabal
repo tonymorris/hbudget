@@ -54,7 +54,7 @@ Library
                     Math.Budget.Lens
                     Math.Budget.Method
                     Math.Budget.Money
-                    Math.Budget.PayInterval
+                    Math.Budget.PaymentInterval
                     Math.Budget.PaymentType
                     Math.Budget.Priors
                     Math.Budget.Types

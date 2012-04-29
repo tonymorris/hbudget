@@ -1,8 +1,8 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 
-module Math.Budget.PayInterval
+module Math.Budget.PaymentInterval
 (
-  PayInterval
+  PaymentInterval
 , knownInterval
 , meanPriors
 , medianPriors
@@ -17,25 +17,25 @@ import Math.Budget.Lens.MedianPriorsL
 import Data.Lens.Partial.Common
 import Control.Comonad.Trans.Store
 
-data PayInterval =
+data PaymentInterval =
   KnownInterval Interval Money
   | MeanPriors Priors
   | MedianPriors Priors
   deriving (Eq, Ord, Show)
 
-instance KnownIntervalL PartialLens PayInterval where
+instance KnownIntervalL PartialLens PaymentInterval where
   knownIntervalL =
     PLens $ \p -> case p of
       KnownInterval i n -> Just (store (uncurry knownInterval) (i, n))
       _ -> Nothing
 
-instance MeanPriorsL PartialLens PayInterval where
+instance MeanPriorsL PartialLens PaymentInterval where
   meanPriorsL =
     PLens $ \p -> case p of
       MeanPriors n -> Just (store meanPriors n)
       _ -> Nothing
 
-instance MedianPriorsL PartialLens PayInterval where
+instance MedianPriorsL PartialLens PaymentInterval where
   medianPriorsL =
     PLens $ \p -> case p of
       MedianPriors n -> Just (store medianPriors n)
@@ -44,19 +44,19 @@ instance MedianPriorsL PartialLens PayInterval where
 knownInterval ::
   Interval
   -> Money
-  -> PayInterval
+  -> PaymentInterval
 knownInterval =
   KnownInterval
 
 meanPriors ::
   Priors
-  -> PayInterval
+  -> PaymentInterval
 meanPriors =
   MeanPriors
 
 medianPriors ::
   Priors
-  -> PayInterval
+  -> PaymentInterval
 medianPriors =
   MedianPriors
 
