@@ -46,11 +46,15 @@ Library
                     Math.Budget.Lens.FixedIntervalL
                     Math.Budget.Lens.FixedPriorsL
                     Math.Budget.Lens.InternetMethodL
+                    Math.Budget.Lens.KnownIntervalL
+                    Math.Budget.Lens.MeanPriorsL
+                    Math.Budget.Lens.MedianPriorsL
                     Math.Budget.FixedPeriod
                     Math.Budget.Interval
                     Math.Budget.Lens
                     Math.Budget.Method
                     Math.Budget.Money
+                    Math.Budget.PayInterval
                     Math.Budget.Priors
                     Math.Budget.Types
                     Math.Budget

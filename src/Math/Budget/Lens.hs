@@ -10,3 +10,6 @@ import Math.Budget.Lens.EveryMonthsL as X
 import Math.Budget.Lens.FixedIntervalL as X
 import Math.Budget.Lens.FixedPriorsL as X
 import Math.Budget.Lens.InternetMethodL as X
+import Math.Budget.Lens.KnownIntervalL as X
+import Math.Budget.Lens.MeanPriorsL as X
+import Math.Budget.Lens.MedianPriorsL as X

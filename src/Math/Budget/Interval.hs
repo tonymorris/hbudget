@@ -22,7 +22,7 @@ data Interval =
   Fixed FixedPeriod
   | Arbitrary FixedPeriods
   | OnceOff
-  deriving (Eq, Ord)
+  deriving (Eq, Ord, Show)
 
 instance FixedIntervalL PartialLens Interval where
   fixedIntervalL =
