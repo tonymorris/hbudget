@@ -34,4 +34,5 @@ Library
 
   Exposed-Modules:
                     Math.Budget.FixedPeriod
+                    Math.Budget.Money
 
