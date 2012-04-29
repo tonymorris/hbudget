@@ -47,10 +47,9 @@ Library
                     Math.Budget.Lens.EverySecondsL
                     Math.Budget.Lens.FixedIntervalL
                     Math.Budget.Lens.FixedPriorsL
+                    Math.Budget.Lens.FunctionOfPriorsL
                     Math.Budget.Lens.InternetMethodL
                     Math.Budget.Lens.KnownIntervalL
-                    Math.Budget.Lens.MeanPriorsL
-                    Math.Budget.Lens.MedianPriorsL
                     Math.Budget.Lens.MethodL
                     Math.Budget.Lens.PaymentIntervalL
                     Math.Budget.Lens.PaymentNameL

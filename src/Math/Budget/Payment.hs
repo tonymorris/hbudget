@@ -19,8 +19,7 @@ import Math.Budget.Lens.PaymentTypeL
 import Math.Budget.Lens.ZonedTimeL
 import Math.Budget.Lens.AssociationsL
 import Math.Budget.Lens.KnownIntervalL
-import Math.Budget.Lens.MeanPriorsL
-import Math.Budget.Lens.MedianPriorsL
+import Math.Budget.Lens.FunctionOfPriorsL
 import Math.Budget.Lens.ArbitraryMethodL
 import Math.Budget.Lens.BankDepositL
 import Math.Budget.Lens.BPayL
@@ -82,13 +81,9 @@ instance KnownIntervalL PartialLens Payment where
   knownIntervalL =
     totalLens (paymentIntervalL) >>> knownIntervalL
 
-instance MeanPriorsL PartialLens Payment where
-  meanPriorsL =
-    totalLens (paymentIntervalL) >>> meanPriorsL
-
-instance MedianPriorsL PartialLens Payment where
-  medianPriorsL =
-    totalLens (paymentIntervalL) >>> medianPriorsL
+instance FunctionOfPriorsL PartialLens Payment where
+  functionOfPriorsL =
+    totalLens (paymentIntervalL) >>> functionOfPriorsL
 
 instance ArbitraryMethodL PartialLens Payment where
   arbitraryMethodL =

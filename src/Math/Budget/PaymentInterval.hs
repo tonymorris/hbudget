@@ -4,23 +4,20 @@ module Math.Budget.PaymentInterval
 (
   PaymentInterval
 , knownInterval
-, meanPriors
-, medianPriors
+, functionOfPriors
 ) where
 
 import Math.Budget.Interval
 import Math.Budget.Money
 import Math.Budget.Priors
 import Math.Budget.Lens.KnownIntervalL
-import Math.Budget.Lens.MeanPriorsL
-import Math.Budget.Lens.MedianPriorsL
+import Math.Budget.Lens.FunctionOfPriorsL
 import Data.Lens.Partial.Common
 import Control.Comonad.Trans.Store
 
 data PaymentInterval =
   KnownInterval Interval Money
-  | MeanPriors Priors
-  | MedianPriors Priors
+  | FunctionOfPriors Priors
   deriving (Eq, Ord, Show)
 
 instance KnownIntervalL PartialLens PaymentInterval where
@@ -29,16 +26,10 @@ instance KnownIntervalL PartialLens PaymentInterval where
       KnownInterval i n -> Just (store (uncurry knownInterval) (i, n))
       _ -> Nothing
 
-instance MeanPriorsL PartialLens PaymentInterval where
-  meanPriorsL =
+instance FunctionOfPriorsL PartialLens PaymentInterval where
+  functionOfPriorsL =
     PLens $ \p -> case p of
-      MeanPriors n -> Just (store meanPriors n)
-      _ -> Nothing
-
-instance MedianPriorsL PartialLens PaymentInterval where
-  medianPriorsL =
-    PLens $ \p -> case p of
-      MedianPriors n -> Just (store medianPriors n)
+      FunctionOfPriors n -> Just (store functionOfPriors n)
       _ -> Nothing
 
 knownInterval ::
@@ -48,15 +39,9 @@ knownInterval ::
 knownInterval =
   KnownInterval
 
-meanPriors ::
+functionOfPriors ::
   Priors
   -> PaymentInterval
-meanPriors =
-  MeanPriors
-
-medianPriors ::
-  Priors
-  -> PaymentInterval
-medianPriors =
-  MedianPriors
+functionOfPriors =
+  FunctionOfPriors
 

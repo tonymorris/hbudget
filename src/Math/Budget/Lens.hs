@@ -10,10 +10,9 @@ import Math.Budget.Lens.EverySecondsL as X
 import Math.Budget.Lens.EveryMonthsL as X
 import Math.Budget.Lens.FixedIntervalL as X
 import Math.Budget.Lens.FixedPriorsL as X
+import Math.Budget.Lens.FunctionOfPriorsL as X
 import Math.Budget.Lens.InternetMethodL as X
 import Math.Budget.Lens.KnownIntervalL as X
-import Math.Budget.Lens.MeanPriorsL as X
-import Math.Budget.Lens.MedianPriorsL as X
 import Math.Budget.Lens.MethodL as X
 import Math.Budget.Lens.PaymentIntervalL as X
 import Math.Budget.Lens.PaymentNameL as X

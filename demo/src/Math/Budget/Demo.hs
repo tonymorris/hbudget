@@ -24,7 +24,7 @@ mybudget =
         (bankDeposit "Fred Flintstone" "123456" "00118421")
     , expensePayment
         "Electricity"
-        (meanPriors (fixedPriors (450.50 :| [460.37, 440]) (everyMonths 3)))
+        (functionOfPriors (fixedPriors (450.50 :| [460.37, 440]) (everyMonths 3)))
         (bedrockTime 1966 8 17 (TimeOfDay 12 0 0))
         (internetMethod $ URI {
           uriScheme = "http"
