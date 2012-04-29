@@ -56,6 +56,7 @@ Library
                     Math.Budget.Lens.PaymentNameL
                     Math.Budget.Lens.PaymentTypeL
                     Math.Budget.Lens.ZonedTimeL
+                    Math.Budget.Budget
                     Math.Budget.FixedPeriod
                     Math.Budget.Interval
                     Math.Budget.Lens
