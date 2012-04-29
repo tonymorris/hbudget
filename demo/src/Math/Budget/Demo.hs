@@ -17,5 +17,9 @@ mybudget ::
 mybudget =
   budget
     [
-      expensePayment "Rent" (knownInterval (fixedInterval everyWeek) 200) (bedrockTime 1966 11 20 (TimeOfDay 9 0 0)) (bankDeposit "Fred Flintstone" "123456" "00118421")
+      expensePayment
+        "Rent"
+        (knownInterval (fixedInterval everyWeek) 200)
+        (bedrockTime 1966 11 20 (TimeOfDay 9 0 0))
+        (bankDeposit "Fred Flintstone" "123456" "00118421")
     ]
