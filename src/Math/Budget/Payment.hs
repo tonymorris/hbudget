@@ -18,7 +18,16 @@ import Math.Budget.Lens.PaymentNameL
 import Math.Budget.Lens.PaymentTypeL
 import Math.Budget.Lens.ZonedTimeL
 import Math.Budget.Lens.AssociationsL
+import Math.Budget.Lens.KnownIntervalL
+import Math.Budget.Lens.MeanPriorsL
+import Math.Budget.Lens.MedianPriorsL
+import Math.Budget.Lens.ArbitraryMethodL
+import Math.Budget.Lens.BankDepositL
+import Math.Budget.Lens.BPayL
+import Math.Budget.Lens.InternetMethodL
 import Data.Lens.Common
+import Data.Lens.Partial.Common
+import Control.Category
 import Control.Comonad.Trans.Store
 import qualified Data.Set as S
 import Data.Time
@@ -67,6 +76,34 @@ instance AssociationsL Lens Payment where
   associationsL =
     Lens $ \(Payment a b c d e f) ->
       store (\f' -> Payment a b c d e f') f
+
+instance KnownIntervalL PartialLens Payment where
+  knownIntervalL =
+    totalLens (paymentIntervalL) >>> knownIntervalL
+
+instance MeanPriorsL PartialLens Payment where
+  meanPriorsL =
+    totalLens (paymentIntervalL) >>> meanPriorsL
+
+instance MedianPriorsL PartialLens Payment where
+  medianPriorsL =
+    totalLens (paymentIntervalL) >>> medianPriorsL
+
+instance ArbitraryMethodL PartialLens Payment where
+  arbitraryMethodL =
+    totalLens (methodL) >>> arbitraryMethodL
+
+instance BankDepositL PartialLens Payment where
+  bankDepositL =
+    totalLens (methodL) >>> bankDepositL
+
+instance BPayL PartialLens Payment where
+  bpayL =
+    totalLens (methodL) >>> bpayL
+
+instance InternetMethodL PartialLens Payment where
+  internetMethodL =
+    totalLens (methodL) >>> internetMethodL
 
 payment ::
   String
