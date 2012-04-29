@@ -1,8 +1,7 @@
 :set -isrc
-:l Math.Budget.FixedPeriod Math.Budget.Money Math.Budget.Interval Math.Budget.Priors Math.Budget.Method
+:l Math.Budget
 :m + Test.QuickCheck
-:m + Math.Budget.FixedPeriod
-:m + Math.Budget.Money
+:m + Math.Budget
 :set prompt ">> "
 :set -Wall
 

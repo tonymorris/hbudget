@@ -1,4 +1,5 @@
 {-# LANGUAGE DeriveDataTypeable, GeneralizedNewtypeDeriving #-}
+
 module Math.Budget.Money
 (
   Money

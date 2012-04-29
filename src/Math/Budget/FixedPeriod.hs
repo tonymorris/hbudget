@@ -1,9 +1,9 @@
+{-# LANGUAGE MultiParamTypeClasses #-}
+
 module Math.Budget.FixedPeriod
 (
   FixedPeriod
 , FixedPeriods
-, everySecondsL
-, everyMonthsL
 , isEverySecond
 , isEveryMinute
 , isEveryHour
@@ -22,6 +22,8 @@ module Math.Budget.FixedPeriod
 , everyYears
 ) where
 
+import Math.Budget.Lens.EveryMonthsL
+import Math.Budget.Lens.EverySecondsL
 import Data.Lens.Partial.Common
 import Control.Comonad.Trans.Store
 import Control.Monad.State
@@ -51,19 +53,17 @@ instance Show FixedPeriod where
       EveryMonths n ->
         display [(12, "year"), (1, "month")] n
 
-everySecondsL ::
-  PartialLens FixedPeriod Integer
-everySecondsL =
-  PLens $ \p -> case p of
-    EverySeconds n -> Just (store everySeconds n)
-    EveryMonths _ -> Nothing
+instance EverySecondsL PartialLens FixedPeriod where
+  everySecondsL =
+    PLens $ \p -> case p of
+      EverySeconds n -> Just (store everySeconds n)
+      EveryMonths _ -> Nothing
 
-everyMonthsL ::
-  PartialLens FixedPeriod Int
-everyMonthsL =
-  PLens $ \p -> case p of
-    EveryMonths n -> Just (store everyMonths n)
-    EverySeconds _ -> Nothing
+instance EveryMonthsL PartialLens FixedPeriod where
+  everyMonthsL =
+    PLens $ \p -> case p of
+      EveryMonths n -> Just (store everyMonths n)
+      EverySeconds _ -> Nothing
 
 isEverySecond ::
   FixedPeriod
