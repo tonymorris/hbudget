@@ -2,6 +2,19 @@ module Math.Budget.Demo where
 
 import Math.Budget
 import Data.Time
+import Data.Time.Calendar.OrdinalDate
+
+validPayDay ::
+  Day
+  -> Bool
+validPayDay z =
+  let (_, x) = mondayStartWeek z
+      (_, m, d) = toGregorian z
+  in not $ or [
+                x == 6 -- is Saturday
+              , x == 7 -- is Sunday
+              , m == 4 && d == 25 -- Bedrock Day
+              ]
 
 bedrockTime ::
   Integer
