@@ -3,7 +3,8 @@ module Math.Budget.Priors where
 import Math.Budget.Money
 import Math.Budget.FixedPeriod
 import Data.Time
+import Data.List.NonEmpty
 
 data Priors =
-  PeriodPrior Money ZonedTime [(Money, DiffTime)]
-  | FixedPeriodPrior Money [Money] FixedPeriod
+  Arbitrary (NonEmpty (Money, DiffTime))
+  | Fixed (NonEmpty Money) FixedPeriod

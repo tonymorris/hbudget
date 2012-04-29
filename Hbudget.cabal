@@ -26,6 +26,8 @@ Library
                     , comonad-transformers >= 2
                     , data-lens >= 4
                     , time >= 1.2
+                    , containers >= 0.4
+                    , semigroups >= 0.8
 
   GHC-Options:
                     -Wall
