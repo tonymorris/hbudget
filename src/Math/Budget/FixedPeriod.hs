@@ -1,6 +1,7 @@
 module Math.Budget.FixedPeriod
 (
   FixedPeriod
+, FixedPeriods
 , everySecondsL
 , everyMonthsL
 , isEverySecond
@@ -25,6 +26,7 @@ import Data.Lens.Partial.Common
 import Control.Comonad.Trans.Store
 import Control.Monad.State
 import Data.List
+import Data.Sequence
 import Prelude
 import qualified Prelude as P
 
@@ -33,6 +35,9 @@ data FixedPeriod =
   | EveryMonths Int
   deriving (Eq, Ord)
 
+type FixedPeriods =
+  Seq FixedPeriod
+
 instance Show FixedPeriod where
   show z =
     let conj q s = if q == 0
@@ -40,7 +45,7 @@ instance Show FixedPeriod where
                        ""
                      else
                        show q ++ ' ' : (if q == 1 then s else s ++ "s")
-        display u = intercalate ", " . filter (not . P.null) . evalState (mapM (\(x, s) -> state $ \r -> let (a, b) = divMod r x in (conj a s, b)) u)
+        display u = intercalate ", " . P.filter (not . P.null) . evalState (mapM (\(x, s) -> state $ \r -> let (a, b) = divMod r x in (conj a s, b)) u)
     in case z of
       EverySeconds n ->
         display [(2 * 7 * 24 * 60 * 60, "fortnight"), (7 * 24 * 60 * 60, "week"), (24 * 60 * 60, "day"), (60 * 60, "hour"), (60, "minute"), (1, "second")] n

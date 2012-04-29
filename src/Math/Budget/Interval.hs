@@ -15,7 +15,7 @@ import Control.Comonad.Trans.Store
 
 data Interval =
   Fixed FixedPeriod
-  | Arbitrary [FixedPeriod]
+  | Arbitrary FixedPeriods
   | OnceOff
   deriving (Eq, Ord)
 
@@ -27,7 +27,7 @@ fixedIntervalL =
     _ -> Nothing
 
 arbitraryIntervalL ::
-  PartialLens Interval [FixedPeriod]
+  PartialLens Interval FixedPeriods
 arbitraryIntervalL =
   PLens $ \p -> case p of
     Arbitrary n -> Just (store arbitraryInterval n)
@@ -48,7 +48,7 @@ fixedInterval =
   Fixed
 
 arbitraryInterval ::
-  [FixedPeriod]
+  FixedPeriods
   -> Interval
 arbitraryInterval =
   Arbitrary
