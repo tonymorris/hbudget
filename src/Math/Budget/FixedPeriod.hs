@@ -26,7 +26,6 @@ import Data.Lens.Partial.Common
 import Control.Comonad.Trans.Store
 import Control.Monad.State
 import Data.List
-import Data.Sequence
 import Prelude
 import qualified Prelude as P
 
@@ -36,7 +35,7 @@ data FixedPeriod =
   deriving (Eq, Ord)
 
 type FixedPeriods =
-  Seq FixedPeriod
+  [FixedPeriod]
 
 instance Show FixedPeriod where
   show z =
