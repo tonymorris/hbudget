@@ -27,6 +27,7 @@ Library
                     , data-lens >= 4
                     , time >= 1.2
                     , semigroups >= 0.8
+                    , network >= 2.3
 
   GHC-Options:
                     -Wall
@@ -35,9 +36,18 @@ Library
                     src
 
   Exposed-Modules:
+                    Math.Budget.Lens.ArbitraryIntervalL
+                    Math.Budget.Lens.ArbitraryPriorsL
+                    Math.Budget.Lens.EveryMonthsL
+                    Math.Budget.Lens.EverySecondsL
+                    Math.Budget.Lens.FixedIntervalL
+                    Math.Budget.Lens.FixedPriorsL
                     Math.Budget.FixedPeriod
-                    Math.Budget.Money
                     Math.Budget.Interval
+                    Math.Budget.Lens
+                    Math.Budget.Method
+                    Math.Budget.Money
                     Math.Budget.Priors
-                    Math.Budget.Network
+                    Math.Budget
+
 

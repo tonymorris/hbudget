@@ -24,7 +24,6 @@ data Interval =
   | OnceOff
   deriving (Eq, Ord)
 
-
 instance FixedIntervalL PartialLens Interval where
   fixedIntervalL =
     PLens $ \p -> case p of
