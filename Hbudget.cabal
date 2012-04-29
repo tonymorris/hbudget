@@ -25,6 +25,7 @@ Library
                     , mtl >= 2
                     , comonad-transformers >= 2
                     , data-lens >= 4
+                    , time >= 1.2
 
   GHC-Options:
                     -Wall
@@ -36,4 +37,5 @@ Library
                     Math.Budget.FixedPeriod
                     Math.Budget.Money
                     Math.Budget.Interval
+                    Math.Budget.Priors
 

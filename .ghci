@@ -1,5 +1,5 @@
 :set -isrc
-:l Math.Budget.FixedPeriod Math.Budget.Money Math.Budget.Interval
+:l Math.Budget.FixedPeriod Math.Budget.Money Math.Budget.Interval Math.Budget.Priors
 :m + Test.QuickCheck
 :m + Math.Budget.FixedPeriod
 :m + Math.Budget.Money

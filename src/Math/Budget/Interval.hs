@@ -1,4 +1,13 @@
-module Math.Budget.Interval where
+module Math.Budget.Interval
+(
+  Interval
+, fixedIntervalL
+, arbitraryIntervalL
+, isOnceOffInterval
+, fixedInterval
+, arbitraryInterval
+, onceOffInterval
+) where
 
 import Math.Budget.FixedPeriod
 import Data.Lens.Partial.Common
