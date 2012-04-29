@@ -1,5 +1,7 @@
 module Math.Budget.Types where
 
+import Data.Set
+
 type AccountName =
   String
 
@@ -11,3 +13,6 @@ type AccountNumber =
 
 type BillerCode =
   String
+
+type Associations =
+  Set String

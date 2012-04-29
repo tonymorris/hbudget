@@ -28,6 +28,7 @@ Library
                     , time >= 1.2
                     , semigroups >= 0.8
                     , network >= 2.3
+                    , containers >= 0.4
 
   GHC-Options:
                     -Wall
@@ -39,6 +40,7 @@ Library
                     Math.Budget.Lens.ArbitraryIntervalL
                     Math.Budget.Lens.ArbitraryMethodL
                     Math.Budget.Lens.ArbitraryPriorsL
+                    Math.Budget.Lens.AssociationsL
                     Math.Budget.Lens.BankDepositL
                     Math.Budget.Lens.BPayL
                     Math.Budget.Lens.EveryMonthsL
@@ -49,6 +51,11 @@ Library
                     Math.Budget.Lens.KnownIntervalL
                     Math.Budget.Lens.MeanPriorsL
                     Math.Budget.Lens.MedianPriorsL
+                    Math.Budget.Lens.MethodL
+                    Math.Budget.Lens.PaymentIntervalL
+                    Math.Budget.Lens.PaymentNameL
+                    Math.Budget.Lens.PaymentTypeL
+                    Math.Budget.Lens.ZonedTimeL
                     Math.Budget.FixedPeriod
                     Math.Budget.Interval
                     Math.Budget.Lens
