@@ -13,13 +13,21 @@ module Math.Budget.FixedPeriod
 , isEveryMonth
 , isEveryYear
 , everySeconds
+, everySecond
 , everyMinutes
+, everyMinute
 , everyHours
+, everyHour
 , everyDays
+, everyDay
 , everyWeeks
+, everyWeek
 , everyFortnights
+, everyFortnight
 , everyMonths
+, everyMonth
 , everyYears
+, everyYear
 ) where
 
 import Math.Budget.Lens.EveryMonthsL
@@ -119,11 +127,21 @@ everySeconds ::
 everySeconds =
   EverySeconds
 
+everySecond ::
+  FixedPeriod
+everySecond =
+  everySeconds 1
+
 everyMinutes ::
   Integer
   -> FixedPeriod
 everyMinutes n =
   everySeconds (n * 60)
+
+everyMinute ::
+  FixedPeriod
+everyMinute =
+  everyMinutes 1
 
 everyHours ::
   Integer
@@ -131,11 +149,21 @@ everyHours ::
 everyHours n =
   everyMinutes (n * 60)
 
+everyHour ::
+  FixedPeriod
+everyHour =
+  everyHours 1
+
 everyDays ::
   Integer
   -> FixedPeriod
 everyDays n =
   everyHours (n * 24)
+
+everyDay ::
+  FixedPeriod
+everyDay =
+  everyDays 1
 
 everyWeeks ::
   Integer
@@ -143,11 +171,21 @@ everyWeeks ::
 everyWeeks n =
   everyDays (n * 7)
 
+everyWeek ::
+  FixedPeriod
+everyWeek =
+  everyWeeks 1
+
 everyFortnights ::
   Integer
   -> FixedPeriod
 everyFortnights n =
   everyWeeks (n * 2)
+
+everyFortnight ::
+  FixedPeriod
+everyFortnight =
+  everyFortnights 1
 
 everyMonths ::
   Int
@@ -155,8 +193,18 @@ everyMonths ::
 everyMonths =
   EveryMonths
 
+everyMonth ::
+  FixedPeriod
+everyMonth =
+  everyMonths 1
+
 everyYears ::
   Int
   -> FixedPeriod
 everyYears n =
   everyMonths (n * 12)
+
+everyYear ::
+  FixedPeriod
+everyYear =
+  everyYears 1

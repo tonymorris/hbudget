@@ -34,6 +34,7 @@ import Data.Time
 
 data Payment =
   Payment String PaymentInterval ZonedTime Method PaymentType Associations
+  deriving Show
 
 instance Eq Payment where
   Payment a1 b1 c1 d1 e1 f1 == Payment a2 b2 c2 d2 e2 f2 =

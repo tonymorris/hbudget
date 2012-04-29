@@ -28,7 +28,7 @@ data Method =
   | Arbitrary String
   | Cash
   | Unknown
-  deriving Eq
+  deriving (Eq, Show)
 
 instance ArbitraryMethodL PartialLens Method where
   arbitraryMethodL =

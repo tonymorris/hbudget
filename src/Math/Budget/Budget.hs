@@ -9,7 +9,7 @@ import Math.Budget.Payment
 
 newtype Budget =
   Budget [Payment]
-  deriving Eq
+  deriving (Eq, Show)
 
 budget ::
   [Payment]
