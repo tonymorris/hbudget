@@ -1,6 +1,9 @@
 module Math.Budget.Payment
 (
   Payment
+, payment
+, expensePayment
+, incomePayment
 ) where
 
 import Math.Budget.Method
@@ -24,3 +27,30 @@ instance Eq Payment where
         , f1 == f2
         ]
 
+payment ::
+  String
+  -> PaymentInterval
+  -> ZonedTime
+  -> Method
+  -> PaymentType
+  -> Payment
+payment n i t m y =
+  Payment n i t m y S.empty
+
+expensePayment ::
+  String
+  -> PaymentInterval
+  -> ZonedTime
+  -> Method
+  -> Payment
+expensePayment n i t m =
+  payment n i t m expense
+
+incomePayment ::
+  String
+  -> PaymentInterval
+  -> ZonedTime
+  -> Method
+  -> Payment
+incomePayment n i t m =
+  payment n i t m income
