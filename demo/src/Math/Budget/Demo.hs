@@ -7,11 +7,11 @@ import Data.Maybe
 import Data.Time
 import Data.Time.Calendar.OrdinalDate
 
-nextPayDays ::
+paydays ::
   ZonedTime
-  -> ZonedTime
-nextPayDays ZonedTime (LocalTime d t) z =
-  let validPayDay q =
+  -> [ZonedTime]
+paydays (ZonedTime (LocalTime d t) z) =
+  let validPayday q =
         let (_, x) = mondayStartWeek q
             (_, m', r) = toGregorian q
         in not $ or [
@@ -19,27 +19,22 @@ nextPayDays ZonedTime (LocalTime d t) z =
                     , x == 7 -- is Sunday
                     , m' == 4 && r == 25 -- 25 April, Bedrock Day
                     ]
-      (y, m, d') = toGregorian d
-      count from to =
-        let (yy', mm', dd') = fromMaybe (y, m, from) . find (\(yy, mm, dd) -> validPayDay (fromGregorian yy mm dd)) . iterate (\(yy, mm, dd) -> (yy, mm, dd - 1)) $ (y, m, to y m)
-        in ZonedTime (LocalTime (fromGregorian yy' mm' dd') t) z
-  in if d' <= 15
-       then
-         count 1 (const . const $ 15)
-       else
-         count 16 gregorianMonthLength
+      (yy, mm, dd) =
+        toGregorian d
+      (n, f) =
+        if dd <= 15
+          then
+            (1, const . const $ 15)
+          else
+            (16, gregorianMonthLength)
+      next =
+        fromGregorian yy mm (f yy mm)
+      rewind =
+        ZonedTime (LocalTime (fromMaybe (fromGregorian yy mm n) . find validPayday . iterate (addDays (-1)) $ next) t) z
+      rest =
+        paydays (ZonedTime (LocalTime (addDays 1 next) t) z)
+  in rewind : rest
 
-
-  {-
-    let w = if d' <= 15
-               then
-                 count 1 (const . const $ 15)
-               else
-                 count 16 gregorianMonthLength
-         UTCTime vd _ = zonedTimeToUTC v
-         UTCTime wd _ = zonedTimeToUTC w
-     in everySeconds (diffDays wd vd * 24 * 60 * 60)
-    -}
 bedrockTime ::
   Integer
   -> Int
