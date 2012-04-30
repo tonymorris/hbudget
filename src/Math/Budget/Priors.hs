@@ -14,7 +14,6 @@ import Math.Budget.Lens.FixedPriorsL
 import Math.Budget.Lens.FixedIntervalL
 import Math.Budget.Lens.EverySecondsL
 import Math.Budget.Lens.EveryMonthsL
-import Data.Time
 import Data.List.NonEmpty
 import Data.Lens.Common
 import Data.Lens.Partial.Common
@@ -22,7 +21,7 @@ import Control.Category
 import Control.Comonad.Trans.Store
 
 data Priors =
-  Arbitrary (NonEmpty (Money, DiffTime))
+  Arbitrary (NonEmpty (Money, FixedPeriod))
   | Fixed (NonEmpty Money) FixedPeriod
   deriving (Eq, Ord, Show)
 
@@ -51,7 +50,7 @@ instance EveryMonthsL PartialLens Priors where
     fixedIntervalL >>> everyMonthsL
 
 arbitraryPriors ::
-  NonEmpty (Money, DiffTime)
+  NonEmpty (Money, FixedPeriod)
   -> Priors
 arbitraryPriors =
   Arbitrary
