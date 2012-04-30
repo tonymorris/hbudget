@@ -1,21 +1,45 @@
 module Math.Budget.Demo where
 
 import Math.Budget
+import Data.List
+import Data.List.NonEmpty hiding (iterate)
+import Data.Maybe
 import Data.Time
 import Data.Time.Calendar.OrdinalDate
 
-validPayDay ::
-  Day
-  -> Bool
-validPayDay z =
-  let (_, x) = mondayStartWeek z
-      (_, m, d) = toGregorian z
-  in not $ or [
-                x == 6 -- is Saturday
-              , x == 7 -- is Sunday
-              , m == 4 && d == 25 -- 25 April, Bedrock Day
-              ]
+nextPayDays ::
+  ZonedTime
+  -> ZonedTime
+nextPayDays ZonedTime (LocalTime d t) z =
+  let validPayDay q =
+        let (_, x) = mondayStartWeek q
+            (_, m', r) = toGregorian q
+        in not $ or [
+                      x == 6 -- is Saturday
+                    , x == 7 -- is Sunday
+                    , m' == 4 && r == 25 -- 25 April, Bedrock Day
+                    ]
+      (y, m, d') = toGregorian d
+      count from to =
+        let (yy', mm', dd') = fromMaybe (y, m, from) . find (\(yy, mm, dd) -> validPayDay (fromGregorian yy mm dd)) . iterate (\(yy, mm, dd) -> (yy, mm, dd - 1)) $ (y, m, to y m)
+        in ZonedTime (LocalTime (fromGregorian yy' mm' dd') t) z
+  in if d' <= 15
+       then
+         count 1 (const . const $ 15)
+       else
+         count 16 gregorianMonthLength
 
+
+  {-
+    let w = if d' <= 15
+               then
+                 count 1 (const . const $ 15)
+               else
+                 count 16 gregorianMonthLength
+         UTCTime vd _ = zonedTimeToUTC v
+         UTCTime wd _ = zonedTimeToUTC w
+     in everySeconds (diffDays wd vd * 24 * 60 * 60)
+    -}
 bedrockTime ::
   Integer
   -> Int

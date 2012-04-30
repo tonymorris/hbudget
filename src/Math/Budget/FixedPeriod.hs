@@ -37,7 +37,7 @@ import Control.Comonad.Trans.Store
 import Control.Monad.State
 import Data.List
 import Prelude
-import qualified Prelude as P
+import Prelude as P
 
 data FixedPeriod =
   EverySeconds Integer
