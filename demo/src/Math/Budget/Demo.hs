@@ -1,11 +1,20 @@
 module Math.Budget.Demo where
 
 import Math.Budget
+import Control.Applicative
 import Data.List
-import Data.List.NonEmpty hiding (iterate)
+import Data.List.NonEmpty hiding (iterate, zipWith, tail)
 import Data.Maybe
 import Data.Time
 import Data.Time.Calendar.OrdinalDate
+
+paydaydiffs ::
+  ZonedTime
+  -> FixedPeriods
+paydaydiffs =
+  (zipWith (\v w -> let UTCTime vd _ = zonedTimeToUTC v
+                        UTCTime wd _ = zonedTimeToUTC w
+                    in everySeconds (diffDays wd vd * 24 * 60 * 60)) <*> tail) . paydays
 
 paydays ::
   ZonedTime
