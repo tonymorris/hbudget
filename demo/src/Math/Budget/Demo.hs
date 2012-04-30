@@ -27,7 +27,7 @@ paydays (ZonedTime (LocalTime d t) z) =
         in not $ or [
                       x == 6 -- is Saturday
                     , x == 7 -- is Sunday
-                    , m' == 4 && r == 15 -- 25 April, Bedrock Day
+                    , m' == 4 && r == 15 -- 15 April, Bedrock Day
                     ]
       (yy, mm, dd) =
         toGregorian d
