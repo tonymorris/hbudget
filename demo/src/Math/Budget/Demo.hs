@@ -16,6 +16,7 @@ paydaydiffs =
                         UTCTime wd _ = zonedTimeToUTC w
                     in everySeconds (diffDays wd vd * 24 * 60 * 60)) <*> tail) . paydays
 
+-- Fred is paid on the first prior business day on (and including) the 15th and last day of every calendar month.
 paydays ::
   ZonedTime
   -> [ZonedTime]
@@ -26,7 +27,7 @@ paydays (ZonedTime (LocalTime d t) z) =
         in not $ or [
                       x == 6 -- is Saturday
                     , x == 7 -- is Sunday
-                    , m' == 4 && r == 25 -- 25 April, Bedrock Day
+                    , m' == 4 && r == 15 -- 25 April, Bedrock Day
                     ]
       (yy, mm, dd) =
         toGregorian d
@@ -62,7 +63,7 @@ mybudget =
         "Rent"
         (knownInterval (fixedInterval everyWeek) 200)
         (bedrockTime 1966 11 20 (TimeOfDay 9 0 0))
-        (bankDeposit "Fred Flintstone" "123456" "00118421")
+        (bankDeposit "Mr Landlord" "123456" "00118421")
     , expensePayment
         "Electricity"
         (functionOfPriors (fixedPriors (450.50 :| [460.37, 440]) (everyMonths 3)))
@@ -78,4 +79,10 @@ mybudget =
         , uriQuery = "account=123"
         , uriFragment = ""
         })
+     , let start = bedrockTime 1966 6 15 (TimeOfDay 12 0 0)
+       in incomePayment
+            "Fred's pay"
+            (knownInterval (arbitraryInterval (paydaydiffs start)) 1000)
+            start
+            (bankDeposit "Fred Flintstone" "678345" "019930")
     ]
