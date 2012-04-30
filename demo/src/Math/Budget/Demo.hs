@@ -13,7 +13,7 @@ validPayDay z =
   in not $ or [
                 x == 6 -- is Saturday
               , x == 7 -- is Sunday
-              , m == 4 && d == 25 -- Bedrock Day
+              , m == 4 && d == 25 -- 25 April, Bedrock Day
               ]
 
 bedrockTime ::
