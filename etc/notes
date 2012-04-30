@@ -1,0 +1,6 @@
+20120501
+
+* Change PaymentInterval to include only Interval and Money by integrating to Payment
+* Change Priors to be a list of (Money, ZonedTime)
+* delete dependency on semigroupoids
+* Include Priors on Payment
