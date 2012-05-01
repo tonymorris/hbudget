@@ -61,13 +61,13 @@ mybudget =
     [
       expensePayment
         "Rent"
-        (knownInterval (fixedInterval everyWeek) 200)
         (bedrockTime 1966 11 20 (TimeOfDay 9 0 0))
         (bankDeposit "Mr Landlord" "123456" "00118421")
+        (fixedInterval everyWeek)
+        200
     , expensePayment
         "Electricity"
-        (functionOfPriors (fixedPriors (450.50 :| [460.37, 440]) (everyMonths 3)))
-        (bedrockTime 1966 8 17 (TimeOfDay 12 0 0))
+        (bedrockTime 1966 8 17 (TimeOfDay 12 0 0)) -- todo function of priors
         (internetMethod $ URI {
           uriScheme = "http"
         , uriAuthority = Just $ URIAuth {
@@ -79,10 +79,13 @@ mybudget =
         , uriQuery = "account=123"
         , uriFragment = ""
         })
+        (fixedInterval $ everyMonths 3)
+        300 -- todo function of priors
      , let start = bedrockTime 1966 6 15 (TimeOfDay 12 0 0)
        in incomePayment
             "Fred's pay"
-            (knownInterval (arbitraryInterval (paydaydiffs start)) 1000)
-            start
+            (bedrockTime 1966 11 20 (TimeOfDay 9 0 0))
             (bankDeposit "Fred Flintstone" "678345" "019930")
+            (arbitraryInterval (paydaydiffs start))
+            1000
     ]
