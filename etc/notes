@@ -5,3 +5,7 @@
 * delete dependency on semigroupoids
 * delete PaymentInterval
 * Include Priors on Payment
+
+Payment
+  * Provide either start time (ZonedTime) and fixed period (FixedPeriod) or NonEmpty ZonedTime (Priors)
+  * Provide either fixed amount or NonEmpty Money (Priors)
