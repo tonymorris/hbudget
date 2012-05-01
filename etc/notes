@@ -9,3 +9,4 @@
 Payment
   * Provide either start time (ZonedTime) and fixed period (FixedPeriod) or NonEmpty ZonedTime (Priors)
   * Provide either fixed amount or NonEmpty Money (Priors)
+  * Can keep prior ZonedTime and/or Money either way
